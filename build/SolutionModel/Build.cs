@@ -58,12 +58,12 @@ class Build : NukeBuild
     Target Modifications => _ => _
         .Executes(() =>
         {
-            var solution = ProjectModelTasks.ParseSolution(RootDirectory / "nuke-playground.sln");
+            var solution = ProjectModelTasks.ParseSolution(SolutionFromMarkerFileOrParameter);
 
             solution.AddProject(
-                "NonExistentProject",
+                "NonExistent",
                 ProjectType.CSharpProject.FirstGuid,
-                RootDirectory / "src" / "NonExistentProject.csproj");
+                RootDirectory / "NonExistent.csproj");
 
             solution.Save();
         });

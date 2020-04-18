@@ -1,23 +1,15 @@
 using System;
-using System.Linq;
 using System.Threading;
 using Nuke.Common;
 using Nuke.Common.Execution;
-using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
 using Nuke.Common.Utilities;
-using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
-    public static int Main () => Execute<Build>();
-    
-    [Parameter("")]
+    public static int Main () => Execute<Build>(x => x.Print);
+
+    [Parameter("Just a string parameter. Needs to be quoted.")]
     readonly string StringParam;
 
     [Parameter]
@@ -26,7 +18,7 @@ class Build : NukeBuild
     [Parameter]
     readonly string[] ArrayParam; // TODO: value provider
 
-    Target Types => _ => _
+    Target Print => _ => _
         .Executes(() =>
         {
             Logger.Normal($"{nameof(StringParam)} = {StringParam}");
