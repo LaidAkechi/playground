@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI", "build\CI\CI.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolGeneration", "build\ToolGeneration\ToolGeneration.csproj", "{EE49A460-BC62-476C-8FE8-80FEE5010F18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalFiles", "build\ExternalFiles\ExternalFiles.csproj", "{1F695B4B-0689-415C-847C-83FFF54F9134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,13 @@ Global
 		{EE49A460-BC62-476C-8FE8-80FEE5010F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE49A460-BC62-476C-8FE8-80FEE5010F18}.Release|x64.ActiveCfg = Release|Any CPU
 		{EE49A460-BC62-476C-8FE8-80FEE5010F18}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Debug|x64.Build.0 = Debug|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Release|x64.ActiveCfg = Release|Any CPU
+		{1F695B4B-0689-415C-847C-83FFF54F9134}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,5 +154,6 @@ Global
 		{77298B51-1F21-47A8-862F-E2E9030C26F1} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{5835479F-0F98-46D7-9851-762666C8FB0B} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{EE49A460-BC62-476C-8FE8-80FEE5010F18} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
+		{1F695B4B-0689-415C-847C-83FFF54F9134} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 	EndGlobalSection
 EndGlobal
