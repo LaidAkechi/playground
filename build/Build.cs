@@ -3,7 +3,18 @@ using Nuke.Common.Execution;
 
 [CheckBuildProjectConfigurations]
 [UnsetVisualStudioEnvironmentVariables]
-class Build : NukeBuild
+partial class Build : NukeBuild
 {
     public static int Main () => Execute<Build>();
+
+    Target Hello => _ => _
+        .Executes(() =>
+        {
+        });
+
+    Target World => _ => _
+        .DependsOn(Hello)
+        .Executes(() =>
+        {
+        });
 }
