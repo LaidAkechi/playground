@@ -24,6 +24,24 @@ partial class Build
             DotNet($"build {Solution} --configuration {Configuration} --no-restore");
         });
 
+    [PathExecutable]
+    readonly Tool Git;
+
+    [PackageExecutable(
+        packageId: "xunit.runner.console",
+        packageExecutable32: "xunit.console.x86.exe",
+        packageExecutable64: "xunit.console.exe")]
+    readonly Tool Xunit;
+
+    [LocalExecutable("./tools/nuget.exe")]
+    readonly Tool NuGet;
+
+    Target ToolInvocation_Attributes => _ => _
+        .Executes(() =>
+        {
+            Git("status");
+        });
+
     // Fluent modifications
     Target ToolInvocation_Fluent => _ => _
         .Executes(() =>
