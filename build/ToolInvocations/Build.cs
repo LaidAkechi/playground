@@ -6,6 +6,7 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.GitVersion;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [UnsetVisualStudioEnvironmentVariables]
@@ -45,6 +46,8 @@ class Build : NukeBuild
             Git("status");
         });
 
+    [GitVersion] readonly GitVersion GitVersion;
+
     // Fluent modifications
     Target FluentAPI => _ => _
         .Executes(() =>
@@ -62,6 +65,7 @@ class Build : NukeBuild
             DotNetPack(_ => _
                 .SetProject(Solution)
                 .SetConfiguration(Configuration)
+                .SetVersion(GitVersion.NuGetVersionV2)
                 .EnableNoBuild()
                 .SetOutputDirectory(OutputDirectory));
         });
