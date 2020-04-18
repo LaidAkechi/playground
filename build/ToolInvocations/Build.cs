@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.Execution;
@@ -7,10 +6,6 @@ using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [UnsetVisualStudioEnvironmentVariables]
@@ -63,6 +58,12 @@ class Build : NukeBuild
                 .SetConfiguration(Configuration)
                 .EnableNoRestore()
                 .SetVerbosity(DotNetVerbosity.Minimal));
+
+            DotNetPack(_ => _
+                .SetProject(Solution)
+                .SetConfiguration(Configuration)
+                .EnableNoBuild()
+                .SetOutputDirectory(OutputDirectory));
         });
 
     [Parameter] bool EnableCoverage;
@@ -86,7 +87,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var publishConfigurations =
-                from project in Solution.GetProjects("*Program")
+                from project in Solution.GetProjects("*rary")
                 from framework in project.GetTargetFrameworks()
                 select new { project, framework };
 
@@ -98,10 +99,12 @@ class Build : NukeBuild
         });
 
     // Push multiple packages in parallel and aggregate errors
+    AbsolutePath OutputDirectory => RootDirectory / ".." / ".." / "output";
+
     Target CombinatorialApi02 => _ => _
         .Executes(() =>
         {
-            var packages = RootDirectory.GlobFiles("./output/packages/*.nupkg").NotEmpty();
+            var packages = OutputDirectory.GlobFiles("*.nupkg").NotEmpty();
 
             DotNetNuGetPush(_ => _
                     .SetSource("url")

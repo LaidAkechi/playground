@@ -30,7 +30,7 @@ class Build : NukeBuild
         .DependsOn(Compile);
 
     Target Publish => _ => _
-        .DependsOn(Pack);
+        .DependsOn(Clean, Test, Pack);
 
     Target Announce => _ => _
         .TriggeredBy(Publish);
