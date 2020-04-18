@@ -13,7 +13,8 @@ using static Nuke.Common.IO.PathConstruction;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
-    public static int Main() => Execute<Build>(x => x.Publish);
+    // Invoke: nuke --plan
+    public static int Main() => Execute<Build>(x => x.Compile);
 
     Target Clean => _ => _
         .Before(Restore);
