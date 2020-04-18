@@ -9,21 +9,25 @@ class Build : NukeBuild
 {
     public static int Main () => Execute<Build>(x => x.Print);
 
-    [Parameter("Just a string parameter. Needs to be quoted.")]
+    [Parameter("String parameter. Needs to be quoted.")]
     readonly string StringParam;
 
-    [Parameter]
+    [Parameter("Switch parameter.")]
+    readonly bool? BoolParam;
+
+    [Parameter("Enum parameter with default value.")]
     readonly UriKind EnumParam;
 
-    [Parameter]
+    [Parameter("Array parameter with custom separator", Separator = "+")]
     readonly string[] ArrayParam; // TODO: value provider
 
     Target Print => _ => _
         .Executes(() =>
         {
-            Logger.Normal($"{nameof(StringParam)} = {StringParam}");
+            Logger.Normal($"{nameof(StringParam)} = {StringParam ?? "<null>"}");
+            Logger.Normal($"{nameof(BoolParam)} = {(BoolParam.HasValue ? BoolParam.Value.ToString() : "<null>")}");
             Logger.Normal($"{nameof(EnumParam)} = {EnumParam}");
-            Logger.Normal($"{nameof(ArrayParam)} = {ArrayParam.JoinComma()}");
+            Logger.Normal($"{nameof(ArrayParam)} = {ArrayParam?.JoinComma() ?? "<null>"}");
         });
 
     Target Requirements => _ => _
