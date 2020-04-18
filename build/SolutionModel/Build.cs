@@ -17,7 +17,7 @@ class Build : NukeBuild
 
     [Solution] readonly Solution SolutionFromMarkerFileOrParameter;
 
-    [Solution("nuke-playground.sln")] readonly Solution SolutionFromPath;
+    [Solution("./../../nuke-playground.sln")] readonly Solution SolutionFromPath;
 
     // Load solution via attribute
     Target ViaAttributes => _ => _
@@ -31,13 +31,13 @@ class Build : NukeBuild
     Target Parsing => _ => _
         .Executes(() =>
         {
-            var solution = ProjectModelTasks.ParseSolution(RootDirectory / "nuke-playground.sln");
+            var solution = ProjectModelTasks.ParseSolution(SolutionFromMarkerFileOrParameter);
 
             solution.GetProjects("*Tests")
                 .ForEach(x => Logger.Normal(x)); // TODO: why no method group?
 
             solution.AllSolutionFolders
-                .ForEach(Logger.Normal);
+                .ForEach(x => Logger.Normal(x.Name));
         });
 
     // Create solution with solution folder and project
