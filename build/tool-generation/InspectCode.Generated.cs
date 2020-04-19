@@ -1,4 +1,4 @@
-// Generated from https://raw.githubusercontent.com/nuke-build/playground/master/build/ToolGeneration/InspectCode.json
+// Generated from https://raw.githubusercontent.com/nuke-build/playground/master/build/tool-generation/InspectCode.json
 
 using JetBrains.Annotations;
 using Newtonsoft.Json;

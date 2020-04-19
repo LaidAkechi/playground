@@ -23,21 +23,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{FC8B310B
 	ProjectSection(SolutionItems) = preProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameters", "build\Parameters\Parameters.csproj", "{C63CAF70-D48A-44AE-B386-F19B40E2B9B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "parameters", "build\parameters\parameters.csproj", "{C63CAF70-D48A-44AE-B386-F19B40E2B9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphModel", "build\GraphModel\GraphModel.csproj", "{689CA04A-D838-4308-AF8A-EBD55553679E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "target-model", "build\target-model\target-model.csproj", "{689CA04A-D838-4308-AF8A-EBD55553679E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionModel", "build\SolutionModel\SolutionModel.csproj", "{D79CEB14-EF5B-4C97-A399-1F637156DE91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solution-model", "build\solution-model\solution-model.csproj", "{D79CEB14-EF5B-4C97-A399-1F637156DE91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolInvocations", "build\ToolInvocations\ToolInvocations.csproj", "{77298B51-1F21-47A8-862F-E2E9030C26F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tool-invocation", "build\tool-invocation\tool-invocation.csproj", "{77298B51-1F21-47A8-862F-E2E9030C26F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI", "build\CI\CI.csproj", "{5835479F-0F98-46D7-9851-762666C8FB0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ci-configuration", "build\ci-configuration\ci-configuration.csproj", "{5835479F-0F98-46D7-9851-762666C8FB0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolGeneration", "build\ToolGeneration\ToolGeneration.csproj", "{EE49A460-BC62-476C-8FE8-80FEE5010F18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tool-generation", "build\tool-generation\tool-generation.csproj", "{EE49A460-BC62-476C-8FE8-80FEE5010F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalFiles", "build\ExternalFiles\ExternalFiles.csproj", "{1F695B4B-0689-415C-847C-83FFF54F9134}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "external-files", "build\external-files\external-files.csproj", "{1F695B4B-0689-415C-847C-83FFF54F9134}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathConstruction", "build\PathConstruction\PathConstruction.csproj", "{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "path-construction", "build\path-construction\path-construction.csproj", "{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
