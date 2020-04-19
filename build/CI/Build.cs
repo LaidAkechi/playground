@@ -28,6 +28,13 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     GitHubActionsImage.WindowsLatest,
     InvokedTargets = new[] {nameof(Test)})]
 
+
+
+
+
+
+
+
 // Multi node CI execution
 [AzurePipelines(
     AzurePipelinesImage.Ubuntu1604,
@@ -35,12 +42,20 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     InvokedTargets = new[] {nameof(Test)},
     // Target without dedicated agent execution
     NonEntryTargets = new[] {nameof(Compile)})]
+
+
+
+
+
 [TeamCity(
     TeamCityAgentPlatform.Unix,
     VcsTriggeredTargets = new[] {nameof(Test)},
     NonEntryTargets = new[] {nameof(Compile)},
     NightlyTriggeredTargets = new[] {nameof(Test)},
     ManuallyTriggeredTargets = new[] {nameof(Publish)})]
+
+
+
 class Build : NukeBuild
 {
     public static int Main() => Execute<Build>();

@@ -3,41 +3,42 @@ using System.Threading;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Utilities;
+using static Nuke.Common.Logger;
 
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
     public static int Main () => Execute<Build>(x => x.Print);
 
-    [Parameter("String parameter. Needs to be quoted.")]
-    readonly string StringParam;
+    [Parameter] readonly string StringParam;
+    [Parameter] readonly bool? BoolParam;
+    [Parameter] readonly UriKind EnumParam;
 
-    [Parameter("Switch parameter.")]
-    readonly bool? BoolParam;
-
-    [Parameter("Enum parameter with default value.")]
-    readonly UriKind EnumParam;
-
-    [Parameter("Array parameter with custom separator", Separator = "+")]
-    readonly string[] ArrayParam; // TODO: value provider
+    [Parameter(Separator = "+")] readonly string[] ArrayParam; // TODO: value provider
 
     Target Print => _ => _
         .Executes(() =>
         {
-            Logger.Normal($"{nameof(StringParam)} = {StringParam ?? "<null>"}");
-            Logger.Normal($"{nameof(BoolParam)} = {(BoolParam.HasValue ? BoolParam.Value.ToString() : "<null>")}");
-            Logger.Normal($"{nameof(EnumParam)} = {EnumParam}");
-            Logger.Normal($"{nameof(ArrayParam)} = {ArrayParam?.JoinComma() ?? "<null>"}");
+            Normal($"{nameof(StringParam)} = {StringParam ?? "<null>"}");
+            Normal($"{nameof(BoolParam)} = {(BoolParam.HasValue ? BoolParam.Value.ToString() : "<null>")}");
+            Normal($"{nameof(EnumParam)} = {EnumParam}");
+            Normal($"{nameof(ArrayParam)} = {ArrayParam?.JoinComma() ?? "<null>"}");
         });
 
-    Target Requirements => _ => _
-        .Requires(() => StringParam)
-        .DependsOn(DependentTarget)
+    [Parameter("Api key to publish NuGet packages")]
+    readonly string ApiKey;
+
+    Target Publish => _ => _
+        .Requires(() => ApiKey)
+        .DependsOn(Pack)
         .Executes(() =>
         {
-            Logger.Normal($"String length: {StringParam.Length}");
+
         });
 
-    Target DependentTarget => _ => _
-        .Executes(() => Thread.Sleep(10_000));
+    Target Pack => _ => _
+        .Executes(() =>
+        {
+            Thread.Sleep(10_000);
+        });
 }

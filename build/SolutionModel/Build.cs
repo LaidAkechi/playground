@@ -62,8 +62,8 @@ class Build : NukeBuild
 
             solution.AddProject(
                 "NonExistent",
-                ProjectType.CSharpProject.FirstGuid,
-                RootDirectory / "NonExistent.csproj");
+                typeId: ProjectType.CSharpProject.FirstGuid,
+                path: RootDirectory / "NonExistent.csproj");
 
             solution.Save();
         });

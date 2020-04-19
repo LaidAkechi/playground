@@ -14,8 +14,6 @@ class Build : NukeBuild
 {
     public static int Main() => Execute<Build>();
 
-    [Solution] readonly Solution Solution;
-
     [Parameter] readonly Configuration Configuration = Configuration.Debug;
     [Parameter] bool IgnoreFailedSources;
 
@@ -47,6 +45,7 @@ class Build : NukeBuild
         });
 
     [GitVersion] readonly GitVersion GitVersion;
+    [Solution] readonly Solution Solution;
 
     // Fluent modifications
     Target FluentAPI => _ => _
@@ -93,13 +92,13 @@ class Build : NukeBuild
             var publishConfigurations =
                 from project in Solution.GetProjects("*rary")
                 from framework in project.GetTargetFrameworks()
-                select new { project, framework };
+                select new {project, framework};
 
             DotNetPublish(_ => _
-                    .SetConfiguration(Configuration)
-                    .CombineWith(publishConfigurations, (_, v) => _
-                        .SetProject(v.project)
-                        .SetFramework(v.framework)));
+                .SetConfiguration(Configuration)
+                .CombineWith(publishConfigurations, (_, v) => _
+                    .SetProject(v.project)
+                    .SetFramework(v.framework)));
         });
 
     // Push multiple packages in parallel and aggregate errors
