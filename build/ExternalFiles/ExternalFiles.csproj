@@ -7,22 +7,25 @@
     <NoWarn>CS0649;CS0169</NoWarn>
     <NukeRootDirectory>./</NukeRootDirectory>
     <NukeScriptDirectory>./</NukeScriptDirectory>
+    <NukeDefaultIncludes>False</NukeDefaultIncludes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Nuke.Common" Version="0.*" />
-    <NukeSpecificationFiles Remove="@(NukeSpecificationFiles)" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- https://github.com/nuke-build/common/tree/develop/source/Nuke.GlobalTool/templates -->
-    <!-- https://github.com/nuke-build/common/blob/develop/source/Nuke.GlobalTool/templates/_build.sdk.csproj -->
-    <!-- https://raw.githubusercontent.com/nuke-build/common/develop/source/Nuke.GlobalTool/templates/_build.sdk.csproj -->
-    <NukeExternalFiles Include="https://github.com/nuke-build/common/tree/develop/source/Nuke.GlobalTool/templates" BasePath="./download">
+    <!-- https://github.com/nuke-build/nuke/tree/develop/source/Nuke.GlobalTool/templates -->
+    <!-- https://github.com/nuke-build/nuke/blob/develop/source/Nuke.GlobalTool/templates/_build.sdk.csproj -->
+    <!-- https://raw.githubusercontent.com/nuke-build/nuke/develop/source/Nuke.GlobalTool/templates/_build.sdk.csproj -->
+    <NukeExternalFiles Include="https://github.com/nuke-build/nuke/tree/develop/source/Nuke.GlobalTool/templates" BasePath="./download">
       <TargetFramework>net5</TargetFramework>
       <GitVersion />
       <NukeVersion>1.3.3.7</NukeVersion>
     </NukeExternalFiles>
+    
+    <Compile Remove="download/*" />
+    <None Include="download/*" LinkBase="download" />
   </ItemGroup>
 
 </Project>

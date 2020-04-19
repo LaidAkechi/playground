@@ -6,10 +6,6 @@ class Build : NukeBuild
 {
     public static int Main () => Execute<Build>();
 
-    Target name => _ => _
-        .Executes(() =>
-        {
-            
-        });
+    Target Foo => _ => _;
 }
 
