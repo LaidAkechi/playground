@@ -43,8 +43,7 @@ partial class Build : NukeBuild
         .Executes(() =>
         {
             var packages =
-            DotNetNuGetPush(_ => _
-                .SetTargetPath());
+                DotNetNuGetPush(_ => _);
         });
 
     [Partition(3)] readonly Partition TestPartition;

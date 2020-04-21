@@ -7,6 +7,7 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
+using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [UnsetVisualStudioEnvironmentVariables]
@@ -38,10 +39,10 @@ class Build : NukeBuild
     [LocalExecutable("./build.cmd")]
     readonly Tool BuildCmd;
 
-    Target ViaAttributes => _ => _
+    Target ExecutableViaAttributes => _ => _
         .Executes(() =>
         {
-            Git("status");
+            Git(arguments: "status");
         });
 
     [GitVersion] readonly GitVersion GitVersion;
@@ -92,7 +93,7 @@ class Build : NukeBuild
             var publishConfigurations =
                 from project in Solution.GetProjects("*rary")
                 from framework in project.GetTargetFrameworks()
-                select new {project, framework};
+                select new { project, framework };
 
             DotNetPublish(_ => _
                 .SetConfiguration(Configuration)

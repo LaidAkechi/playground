@@ -1,0 +1,9 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <ReplacePackageReferences>false</ReplacePackageReferences>
+    <NukeRootDirectory></NukeRootDirectory>
+    <DefaultItemExcludes>build.ps1;build.sh;build.cmd;.nuke</DefaultItemExcludes>
+  </PropertyGroup>
+
+</Project>

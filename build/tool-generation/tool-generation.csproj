@@ -5,12 +5,14 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <RootNamespace></RootNamespace>
     <NoWarn>CS0649;CS0169</NoWarn>
-    <NukeRootDirectory>./</NukeRootDirectory>
-    <NukeScriptDirectory>./</NukeScriptDirectory>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="0.*" />
+    <PackageReference Include="Nuke.Common" Version="0.*"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <NukeSpecificationFiles Include="InspectCode.json"/>
   </ItemGroup>
 
 </Project>
