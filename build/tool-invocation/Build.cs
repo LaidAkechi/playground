@@ -7,7 +7,6 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Tools.Coverlet;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
-using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [UnsetVisualStudioEnvironmentVariables]
