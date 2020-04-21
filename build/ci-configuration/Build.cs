@@ -16,56 +16,35 @@ using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 // ReSharper disable InconsistentNaming
-
-// Single node CI execution
-[AppVeyor(
-    AppVeyorImage.UbuntuLatest,
-    AppVeyorImage.VisualStudioLatest,
-    InvokedTargets = new[] {nameof(Test)})]
-[GitHubActions(
-    "continuous",
-    GitHubActionsImage.UbuntuLatest,
-    GitHubActionsImage.WindowsLatest,
-    InvokedTargets = new[] {nameof(Test)})]
-
-
-
-
-
-
-
-
-// Multi node CI execution
-[AzurePipelines(
-    AzurePipelinesImage.Ubuntu1604,
-    AzurePipelinesImage.Ubuntu1804,
-    InvokedTargets = new[] {nameof(Test)},
-    // Target without dedicated agent execution
-    NonEntryTargets = new[] {nameof(Compile)})]
-
-
-
-
-
-[TeamCity(
-    TeamCityAgentPlatform.Unix,
-    VcsTriggeredTargets = new[] {nameof(Test)},
-    NonEntryTargets = new[] {nameof(Compile)},
-    NightlyTriggeredTargets = new[] {nameof(Test)},
-    ManuallyTriggeredTargets = new[] {nameof(Publish)})]
-
-
-
-class Build : NukeBuild
+partial class Build : NukeBuild
 {
     public static int Main() => Execute<Build>();
 
     [Solution] readonly Solution Solution;
     [Parameter] readonly Configuration Configuration = Configuration.Debug;
+    string OutputDirectory => RootDirectory / "output";
 
     Target Compile => _ => _
         .Executes(() =>
         {
+        });
+
+    Target Pack => _ => _
+        .Executes(() =>
+        {
+            DotNetPack(_ => _
+                .SetProject(Solution.GetProject("Library"))
+                .SetOutputDirectory(OutputDirectory));
+        });
+
+    Target Publish => _ => _
+        .DependsOn(Pack)
+        .Consumes(Pack)
+        .Executes(() =>
+        {
+            var packages =
+            DotNetNuGetPush(_ => _
+                .SetTargetPath());
         });
 
     [Partition(3)] readonly Partition TestPartition;
@@ -83,41 +62,4 @@ class Build : NukeBuild
                     .SetProjectFile(v)
                     .SetLogger($"trx;LogFileName={v.Name}.trx")));
         });
-
-    Target Publish => _ => _
-        .DependsOn(Compile)
-        .Executes(() =>
-        {
-        });
-
-    class TeamCityAttribute : Nuke.Common.CI.TeamCity.TeamCityAttribute
-    {
-        public TeamCityAttribute(TeamCityAgentPlatform platform)
-            : base(platform)
-        {
-        }
-
-        protected override IEnumerable<TeamCityBuildType> GetBuildTypes(
-            NukeBuild build,
-            ExecutableTarget executableTarget,
-            TeamCityVcsRoot vcsRoot,
-            LookupTable<ExecutableTarget, TeamCityBuildType> buildTypes)
-        {
-            var dictionary = new Dictionary<string, string>
-            {
-                {nameof(Compile), "⚙️"},
-                {nameof(Test), "🚦"},
-                {nameof(Publish), "🚚"}
-            };
-
-            return base.GetBuildTypes(build, executableTarget, vcsRoot, buildTypes)
-                .ForEachLazy(x =>
-                {
-                    var symbol = dictionary.GetValueOrDefault(x.InvokedTargets.Last()).NotNull("symbol != null");
-                    x.Name = x.PartitionName == null
-                        ? $"{symbol} {x.Name}"
-                        : $"{symbol} {x.InvokedTargets.Last()} 🧩 {x.Partition}";
-                });
-        }
-    }
 }

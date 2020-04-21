@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "external-files", "build\ext
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "path-construction", "build\path-construction\path-construction.csproj", "{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "global-tool", "build\global-tool\global-tool.csproj", "{04E31CF5-587A-4F48-BC5F-299FF091013F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +147,12 @@ Global
 		{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}.Release|x64.ActiveCfg = Release|Any CPU
 		{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C}.Release|x86.ActiveCfg = Release|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|x64.ActiveCfg = Release|Any CPU
+		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,5 +170,6 @@ Global
 		{EE49A460-BC62-476C-8FE8-80FEE5010F18} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{1F695B4B-0689-415C-847C-83FFF54F9134} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
+		{04E31CF5-587A-4F48-BC5F-299FF091013F} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 	EndGlobalSection
 EndGlobal
