@@ -1,9 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <ReplacePackageReferences>false</ReplacePackageReferences>
+    <ReplacePackageReferences>true</ReplacePackageReferences>
     <NukeRootDirectory></NukeRootDirectory>
-    <DefaultItemExcludes>build.ps1;build.sh;build.cmd;.nuke</DefaultItemExcludes>
+    <DefaultItemExcludes>build.sh;build.ps1;build.cmd;.nuke;*.dotsettings;.editorconfig</DefaultItemExcludes>
   </PropertyGroup>
 
 </Project>
