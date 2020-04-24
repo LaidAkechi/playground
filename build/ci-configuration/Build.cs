@@ -9,8 +9,6 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 partial class Build : NukeBuild
 {
-    public static int Main() => Execute<Build>();
-
     [Solution] readonly Solution Solution;
     [Parameter] readonly Configuration Configuration = Configuration.Debug;
     string OutputDirectory => RootDirectory / "output";
