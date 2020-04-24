@@ -46,6 +46,10 @@ project {
             value = "Debug",
             options = listOf("Debug" to "Debug", "Release" to "Release"),
             display = ParameterDisplay.NORMAL)
+        param(
+            "teamcity.runner.commandline.stdstreams.encoding",
+            "UTF-8"
+        )
     }
 }
 object Test_P1T3 : BuildType({
@@ -56,7 +60,7 @@ object Test_P1T3 : BuildType({
     }
     steps {
         exec {
-            path = "build.sh"
+            path = "build.cmd"
             arguments = "Compile Test --skip --test-partition 1"
         }
     }
@@ -69,7 +73,7 @@ object Test_P2T3 : BuildType({
     }
     steps {
         exec {
-            path = "build.sh"
+            path = "build.cmd"
             arguments = "Compile Test --skip --test-partition 2"
         }
     }
@@ -82,7 +86,7 @@ object Test_P3T3 : BuildType({
     }
     steps {
         exec {
-            path = "build.sh"
+            path = "build.cmd"
             arguments = "Compile Test --skip --test-partition 3"
         }
     }
@@ -143,7 +147,7 @@ object Pack : BuildType({
     }
     steps {
         exec {
-            path = "build.sh"
+            path = "build.cmd"
             arguments = "Pack --skip"
         }
     }
@@ -157,7 +161,7 @@ object Publish : BuildType({
     }
     steps {
         exec {
-            path = "build.sh"
+            path = "build.cmd"
             arguments = "Publish --skip"
         }
     }

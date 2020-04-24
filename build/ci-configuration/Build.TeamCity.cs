@@ -8,7 +8,7 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Utilities.Collections;
 
 [TeamCity(
-    TeamCityAgentPlatform.Unix,
+    TeamCityAgentPlatform.Windows,
     VcsTriggeredTargets = new[] {nameof(Test)},
     NonEntryTargets = new[] {nameof(Compile)},
     NightlyTriggeredTargets = new[] {nameof(Test)},
