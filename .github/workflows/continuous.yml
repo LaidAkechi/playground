@@ -16,7 +16,7 @@
 
 name: continuous
 
-on:
+on: [push]
 
 jobs:
   ubuntu-latest:

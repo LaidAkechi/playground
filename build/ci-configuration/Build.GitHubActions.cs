@@ -4,7 +4,8 @@ using Nuke.Common.CI.GitHubActions;
     "continuous",
     GitHubActionsImage.UbuntuLatest,
     GitHubActionsImage.WindowsLatest,
-    InvokedTargets = new[] {nameof(Test)})]
+    On = new[] { GitHubActionsTrigger.Push },
+    InvokedTargets = new[] { nameof(Test) })]
 partial class Build
 {
 }

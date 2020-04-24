@@ -36,12 +36,12 @@ partial class Build
                     .AssertZeroExitCode();
                 return 0;
             }
-        }
 
-        if (IsLocalBuild)
-        {
-            Logger.Error("This build cannot be executed locally.");
-            return 1;
+            if (IsLocalBuild)
+            {
+                Logger.Error("This build cannot be executed locally.");
+                return 1;
+            }
         }
 
         return Execute<Build>();
