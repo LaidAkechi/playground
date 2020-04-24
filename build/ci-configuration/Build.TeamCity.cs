@@ -20,6 +20,7 @@ partial class Build
         public TeamCityAttribute(TeamCityAgentPlatform platform)
             : base(platform)
         {
+
         }
 
         protected override IEnumerable<TeamCityBuildType> GetBuildTypes(
@@ -31,8 +32,9 @@ partial class Build
             var dictionary = new Dictionary<string, string>
             {
                 {nameof(Compile), "⚙️"},
-                {nameof(Test), "🚦"},
-                {nameof(Publish), "🚚"}
+                {nameof(Pack), "📦"},
+                {nameof(Publish), "🚚"},
+                {nameof(Test), "🚦"}
             };
 
             return base.GetBuildTypes(build, executableTarget, vcsRoot, buildTypes)
