@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="0.*"/>
+    <PackageReference Include="Nuke.Common" Version="0.*" />
   </ItemGroup>
 
   <ItemGroup>
-    <NukeSpecificationFiles Include="InspectCode.json"/>
+    <NukeSpecificationFiles Include="InspectCode.json" />
   </ItemGroup>
 
 </Project>
