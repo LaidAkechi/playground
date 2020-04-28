@@ -24,21 +24,4 @@ class Build : NukeBuild
             Normal($"{nameof(EnumParam)} = {EnumParam}");
             Normal($"{nameof(ArrayParam)} = {ArrayParam?.JoinComma() ?? "<null>"}");
         });
-
-    [Parameter("Api key to publish NuGet packages")]
-    readonly string ApiKey;
-
-    Target Publish => _ => _
-        .Requires(() => ApiKey)
-        .DependsOn(Pack)
-        .Executes(() =>
-        {
-
-        });
-
-    Target Pack => _ => _
-        .Executes(() =>
-        {
-            Thread.Sleep(10_000);
-        });
 }

@@ -6,7 +6,12 @@ using static Nuke.Common.Tools.Git.GitTasks;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
-    // Invoke: nuke --plan
+    // Invoke
+    //  $ nuke --plan
+    //  $ nuke
+    //  $ nuke integration-tests
+    //  $ nuke publish
+    //  $ nuke publish --skip tests
     public static int Main() => Execute<Build>(x => x.Compile);
 
     [GitRepository] readonly GitRepository Repository;
@@ -26,16 +31,15 @@ class Build : NukeBuild
 
     Target UnitTests => _ => _
         .DependsOn(Compile)
-        .DependentFor(Tests)
-        .WhenSkipped(DependencyBehavior.Skip);
+        .DependentFor(Tests);
 
     Target IntegrationTests => _ => _
         .DependsOn(Compile)
-        .DependentFor(Tests)
-        .WhenSkipped(DependencyBehavior.Skip);
+        .DependentFor(Tests);
 
     Target Tests => _ => _
-        .DependsOn(Compile);
+        .DependsOn(Compile)
+        .WhenSkipped(DependencyBehavior.Skip);
 
     Target UpdateChangelog => _ => _
         .OnlyWhenStatic(() => Repository.IsOnReleaseBranch() ||

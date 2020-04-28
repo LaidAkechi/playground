@@ -20,7 +20,6 @@ partial class Build
         public TeamCityAttribute(TeamCityAgentPlatform platform)
             : base(platform)
         {
-
         }
 
         protected override IEnumerable<TeamCityBuildType> GetBuildTypes(
