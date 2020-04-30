@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <ReplacePackageReferences>false</ReplacePackageReferences>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <NukeRootDirectory></NukeRootDirectory>
     <DefaultItemExcludes>global.json;build.sh;build.ps1;build.cmd;.nuke;*.dotsettings;.editorconfig</DefaultItemExcludes>
+    <NoWarn>CS0649;CS0169</NoWarn>
   </PropertyGroup>
 
 </Project>

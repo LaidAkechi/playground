@@ -6,7 +6,6 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>build</ToolCommandName>
     <RootNamespace></RootNamespace>
-    <NoWarn>CS0649;CS0169</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
