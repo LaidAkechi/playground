@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "path-construction", "build\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "global-tool", "build\global-tool\global-tool.csproj", "{04E31CF5-587A-4F48-BC5F-299FF091013F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interface-implementation", "build\interface-implementation\interface-implementation.csproj", "{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,18 @@ Global
 		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|x64.ActiveCfg = Release|Any CPU
 		{04E31CF5-587A-4F48-BC5F-299FF091013F}.Release|x86.ActiveCfg = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|x64.Build.0 = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Debug|x86.Build.0 = Debug|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|x64.ActiveCfg = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|x64.Build.0 = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|x86.ActiveCfg = Release|Any CPU
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,5 +185,6 @@ Global
 		{1F695B4B-0689-415C-847C-83FFF54F9134} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{B8F5FF41-83DD-41E4-8E44-5D4EAF04028C} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 		{04E31CF5-587A-4F48-BC5F-299FF091013F} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
+		{29908CE6-2215-46BA-BC03-F3DF0DF48C8D} = {FC8B310B-F9D7-4E01-8255-41C557211BB6}
 	EndGlobalSection
 EndGlobal
