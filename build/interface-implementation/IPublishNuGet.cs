@@ -1,6 +1,6 @@
 using Nuke.Common;
 
-interface IPublish : IBuild, IHasPackageOutput
+interface IPublishNuGet : IBuild, IHasPackageOutput
 {
     Target Pack => _ => _
         .DependsOn(Compile)
