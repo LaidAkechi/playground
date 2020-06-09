@@ -12,10 +12,18 @@ class Build : NukeBuild
     Target Simple => _ => _
         .Executes(() =>
         {
-            Info(RootDirectory / ".." / ".." / "src");
-            Info(RootDirectory / ".." / ".." / "output");
+            Normal(RootDirectory);
 
+            Info("Division operator:");
+            Normal(RootDirectory / ".." / ".." / "src");
+            Normal(RootDirectory / ".." / ".." / "output");
+
+            Info("Absolute paths:");
             (RootDirectory / ".." / "..").GlobDirectories("tests/*")
-                .ForEach(x => Info(x));
+                .ForEach(x => Normal(x));
+
+            Info("Windows-relative paths:");
+            (RootDirectory / ".." / "..").GlobDirectories("tests/*")
+                .ForEach(x => Normal(RootDirectory.GetWinRelativePathTo(x)));
         });
 }
