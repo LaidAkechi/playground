@@ -5,16 +5,14 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 partial class Build
 {
-    [GitVersion] readonly GitVersion GitVersion;
-    static string GlobalToolName => "global-tool";
+    static string GlobalToolPackageName => "global-tool";
 
     Target Pack => _ => _
         .Unlisted()
         .Executes(() =>
         {
             DotNetPack(_ => _
-                .SetProject(RootDirectory / $"{GlobalToolName}.csproj")
-                .SetVersion(GitVersion.NuGetVersionV2)
+                .SetProject(RootDirectory / $"{GlobalToolPackageName}.csproj")
                 .SetOutputDirectory(RootDirectory));
         });
 
@@ -23,7 +21,7 @@ partial class Build
         .DependsOn(Uninstall)
         .Executes(() =>
         {
-            DotNet($"tool install -g {GlobalToolName} --add-source {RootDirectory} --version {GitVersion.NuGetVersionV2}");
+            DotNet($"tool install -g {GlobalToolPackageName} --add-source {RootDirectory}");
         });
 
     Target Uninstall => _ => _
