@@ -4,6 +4,9 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <RootNamespace></RootNamespace>
+    <!--<NukeBaseDirectory>$(MSBuildThisFileDirectory)\Generated</NukeBaseDirectory>-->
+    <!--<NukeUseNestedNamespaces>true</NukeUseNestedNamespaces>-->
+    <!--<NukeBaseNamespace>Namespace</NukeBaseNamespace>-->
   </PropertyGroup>
 
   <ItemGroup>
