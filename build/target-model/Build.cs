@@ -1,6 +1,7 @@
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
+using Nuke.Common.Tools.GitVersion;
 using static Nuke.Common.Tools.Git.GitTasks;
 
 [UnsetVisualStudioEnvironmentVariables]
@@ -15,6 +16,7 @@ class Build : NukeBuild
     public static int Main() => Execute<Build>(x => x.Compile);
 
     [GitRepository] readonly GitRepository Repository;
+    [Required] [GitVersion] readonly GitVersion GitVersion;
     [Parameter] readonly string ApiKey;
 
     Target Clean => _ => _
