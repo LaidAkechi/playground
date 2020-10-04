@@ -13,10 +13,10 @@ $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 # CONFIGURATION
 ###########################################################################
 
-$BuildProjectFile = "$PSScriptRoot\\path-construction.csproj"
-$TempDirectory = "$PSScriptRoot\\.tmp"
+$BuildProjectFile = "$PSScriptRoot\path-construction.csproj"
+$TempDirectory = "$PSScriptRoot\.tmp"
 
-$DotNetGlobalFile = "$PSScriptRoot\\..\\..\\global.json"
+$DotNetGlobalFile = "$PSScriptRoot\..\..\global.json"
 $DotNetInstallUrl = "https://dot.net/v1/dotnet-install.ps1"
 $DotNetChannel = "Current"
 
