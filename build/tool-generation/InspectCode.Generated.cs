@@ -35,9 +35,9 @@ public static partial class InspectCodeTasks
     ///   <p>One of ReSharper's most notable features, code inspection, is available even without opening Visual Studio. InspectCode, a free command line tool requires a minimum of one parameter- your solution file- to apply all of ReSharper's inspections.</p>
     ///   <p>For more details, visit the <a href="https://www.jetbrains.com/help/resharper/InspectCode.html/">official website</a>.</p>
     /// </summary>
-    public static IReadOnlyCollection<Output> InspectCode(string arguments, string workingDirectory = null, IReadOnlyDictionary<string, string> environmentVariables = null, int? timeout = null, bool? logOutput = null, bool? logInvocation = null, Func<string, string> outputFilter = null)
+    public static IReadOnlyCollection<Output> InspectCode(string arguments, string workingDirectory = null, IReadOnlyDictionary<string, string> environmentVariables = null, int? timeout = null, bool? logOutput = null, bool? logInvocation = null, bool? logTimestamp = null, string logFile = null, Func<string, string> outputFilter = null)
     {
-        var process = ProcessTasks.StartProcess(InspectCodePath, arguments, workingDirectory, environmentVariables, timeout, logOutput, logInvocation, InspectCodeLogger, outputFilter);
+        using var process = ProcessTasks.StartProcess(InspectCodePath, arguments, workingDirectory, environmentVariables, timeout, logOutput, logInvocation, logTimestamp, logFile, InspectCodeLogger, outputFilter);
         process.AssertZeroExitCode();
         return process.Output;
     }
@@ -65,7 +65,7 @@ public static partial class InspectCodeTasks
     {
         toolSettings = toolSettings ?? new InspectCodeSettings();
         PreProcess(ref toolSettings);
-        var process = StartProcess(toolSettings);
+        using var process = StartProcess(toolSettings);
         process.AssertZeroExitCode();
         PostProcess(toolSettings);
         return process.Output;
@@ -131,8 +131,8 @@ public partial class InspectCodeSettings : ToolSettings
     /// <summary>
     ///   Path to the InspectCode executable.
     /// </summary>
-    public override string ToolPath => base.ToolPath ?? InspectCodeTasks.InspectCodePath;
-    public override Action<OutputType, string> CustomLogger => InspectCodeTasks.InspectCodeLogger;
+    public override string ProcessToolPath => base.ProcessToolPath ?? InspectCodeTasks.InspectCodePath;
+    public override Action<OutputType, string> ProcessCustomLogger => InspectCodeTasks.InspectCodeLogger;
     /// <summary>
     ///   Target path.
     /// </summary>
@@ -184,7 +184,7 @@ public partial class InspectCodeSettings : ToolSettings
     ///   Explicitly specified MsBuild Toolset version (12.0, 14.0, 15.0). For example, <c>--toolset=12.0</c>.
     /// </summary>
     public virtual InspectCodeMSBuildToolset Toolset { get; internal set; }
-    protected override Arguments ConfigureArguments(Arguments arguments)
+    protected override Arguments ConfigureProcessArguments(Arguments arguments)
     {
         arguments
           .Add("{value}", TargetPath)
@@ -198,7 +198,7 @@ public partial class InspectCodeSettings : ToolSettings
           .Add("--properties={value}", Properties, "{key}={value}")
           .Add("--dumpIssuesTypes", DumpIssuesTypes)
           .Add("--toolset={value}", Toolset);
-        return base.ConfigureArguments(arguments);
+        return base.ConfigureProcessArguments(arguments);
     }
 }
 #endregion

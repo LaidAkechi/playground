@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.IO;
@@ -9,21 +10,33 @@ class Build : NukeBuild
 {
     public static int Main() => Execute<Build>(x => x.Simple);
 
+    AbsolutePath SourceDirectory => RootDirectory / "src";
+    AbsolutePath OutputDirectory => RootDirectory / "output";
+
+    AbsolutePath ReportDirectory => OutputDirectory / "report";
+
+    UnixRelativePath UnixReportDirectory
+        => RootDirectory.GetUnixRelativePathTo(ReportDirectory);
+
+    WinRelativePath WinReportDirectory
+        => RootDirectory.GetWinRelativePathTo(ReportDirectory);
+
+    IEnumerable<AbsolutePath> MarkdownFiles => RootDirectory.GlobFiles("**/*.md");
+
     Target Simple => _ => _
         .Executes(() =>
         {
-            Normal(RootDirectory);
-
-            Info("Division operator:");
-            Normal(RootDirectory / ".." / ".." / "src");
-            Normal(RootDirectory / ".." / ".." / "output");
-
             Info("Absolute paths:");
-            (RootDirectory / ".." / "..").GlobDirectories("tests/*")
-                .ForEach(x => Normal(x));
+            Normal($"{nameof(RootDirectory)} = {RootDirectory}");
+            Normal($"{nameof(SourceDirectory)} = {SourceDirectory}");
+            Normal($"{nameof(OutputDirectory)} = {OutputDirectory}");
+            Normal($"{nameof(ReportDirectory)} = {ReportDirectory}");
 
-            Info("Windows-relative paths:");
-            (RootDirectory / ".." / "..").GlobDirectories("tests/*")
-                .ForEach(x => Normal(RootDirectory.GetWinRelativePathTo(x)));
+            Info("Relative paths:");
+            Normal($"{nameof(UnixReportDirectory)} = {UnixReportDirectory}");
+            Normal($"{nameof(WinReportDirectory)} = {WinReportDirectory}");
+
+            Info("Globbing paths:");
+            MarkdownFiles.ForEach(x => Normal(x));
         });
 }
