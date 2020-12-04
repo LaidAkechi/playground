@@ -1,6 +1,9 @@
 using System.IO;
+using System.Reflection;
 using Nuke.Common;
 using Nuke.Common.Execution;
+using Nuke.Common.Tooling;
+using Nuke.Common.Tools.GitVersion;
 using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.Logger;
 
@@ -12,8 +15,7 @@ partial class Build : NukeBuild
     Target Default => _ => _
         .Executes(() =>
         {
-            Info($"Current working directory: {WorkingDirectory}");
-            Info($"Number of directories: {Directory.GetDirectories(WorkingDirectory).Length}");
-            Info($"Number of files: {Directory.GetFiles(WorkingDirectory).Length}");
+            GitVersionTasks.GitVersion(_ => _
+                .SetFramework("netcoreapp3.0"));
         });
 }

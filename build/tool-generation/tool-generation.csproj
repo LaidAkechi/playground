@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace></RootNamespace>
     <!--<NukeBaseDirectory>$(MSBuildThisFileDirectory)\Generated</NukeBaseDirectory>-->
     <!--<NukeUseNestedNamespaces>true</NukeUseNestedNamespaces>-->
@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nuke.Common" Version="0.*" />
+    <PackageReference Include="Nuke.Common" Version="5.*" />
   </ItemGroup>
 
   <ItemGroup>
