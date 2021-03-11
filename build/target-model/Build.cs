@@ -19,29 +19,41 @@ class Build : NukeBuild
 
     Target Clean => _ => _
         .Before(Restore)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Restore => _ => _
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Compile => _ => _
         .DependsOn(Restore)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Pack => _ => _
         .DependsOn(Compile)
         .After(UpdateChangelog)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target UnitTests => _ => _
         .DependsOn(Compile)
         .DependentFor(Tests)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target IntegrationTests => _ => _
         .DependsOn(Compile)
         .DependentFor(Tests)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Tests => _ => _
         .DependsOn(Compile)
@@ -50,15 +62,21 @@ class Build : NukeBuild
     Target UpdateChangelog => _ => _
         .OnlyWhenStatic(() => Repository.IsOnReleaseBranch() ||
                               Repository.IsOnHotfixBranch())
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Publish => _ => _
         .Requires(() => ApiKey)
         .Requires(() => GitHasCleanWorkingCopy())
         .DependsOn(Clean, Tests, UpdateChangelog, Pack)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 
     Target Announce => _ => _
         .TriggeredBy(Publish)
-        .Executes(() => { });
+        .Executes(() =>
+        {
+        });
 }

@@ -9,14 +9,14 @@ class Build : NukeBuild, IPublishNuGet, IAnnounce
     public string OutputDirectory => RootDirectory / "output" / "packages";
 
     Target Clean => _ => _
-        .Before<IBuild>(x => x.Restore)
-        .DependentFor<IPublishNuGet>(x => x.Publish)
+        .Before<IBuild>()
+        .DependentFor<IPublishNuGet>()
         .Executes(() =>
         {
         });
 
     Target ValidatePackages => _ => _
-        .DependentFor<IPublishNuGet>(x => x.Publish)
+        .DependentFor<IPublishNuGet>()
         .Executes(() =>
         {
         });
@@ -24,6 +24,6 @@ class Build : NukeBuild, IPublishNuGet, IAnnounce
     public string Message => "New version has been published!";
 
     public Target Announce => _ => _
-        .Inherit<IAnnounce>(x => x.Announce)
-        .TriggeredBy<IPublishNuGet>(x => x.Publish);
+        .Inherit<IAnnounce>()
+        .TriggeredBy<IPublishNuGet>();
 }
