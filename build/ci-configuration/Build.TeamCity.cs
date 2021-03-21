@@ -8,7 +8,6 @@ using Nuke.Common.Tooling;
 using Nuke.Common.Utilities.Collections;
 
 [TeamCity(
-    TeamCityAgentPlatform.Windows,
     VcsTriggeredTargets = new[] {nameof(Test)},
     NonEntryTargets = new[] {nameof(Compile)},
     NightlyTriggeredTargets = new[] {nameof(Test)},
@@ -17,11 +16,6 @@ partial class Build
 {
     class TeamCityAttribute : Nuke.Common.CI.TeamCity.TeamCityAttribute
     {
-        public TeamCityAttribute(TeamCityAgentPlatform platform)
-            : base(platform)
-        {
-        }
-
         protected override IEnumerable<TeamCityBuildType> GetBuildTypes(
             NukeBuild build,
             ExecutableTarget executableTarget,

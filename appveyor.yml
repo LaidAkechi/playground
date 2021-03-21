@@ -19,5 +19,5 @@ image:
   - Visual Studio 2019
 
 build_script:
-  - ps: .\build.ps1 Test
-
+  - cmd: .\build.cmd Test
+  - sh: ./build.cmd Test

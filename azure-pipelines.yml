@@ -15,7 +15,7 @@
 # ------------------------------------------------------------------------------
 
 stages:
-  - stage: ubuntu_16.04
+  - stage: ubuntu_16_04
     displayName: 'ubuntu-16.04'
     dependsOn: [  ]
     pool:
@@ -27,10 +27,15 @@ stages:
         strategy:
           parallel: 3
         steps:
+          - task: Cache@2
+            inputs:
+              key: $(Agent.OS) | **/global.json, **/*.csproj
+              restoreKeys: $(Agent.OS)
+              path: ~/.nuget/packages
           - task: CmdLine@2
             inputs:
               script: './build.cmd Compile Test --skip --test-partition $(System.JobPositionInPhase)'
-  - stage: ubuntu_18.04
+  - stage: ubuntu_18_04
     displayName: 'ubuntu-18.04'
     dependsOn: [  ]
     pool:
@@ -42,6 +47,11 @@ stages:
         strategy:
           parallel: 3
         steps:
+          - task: Cache@2
+            inputs:
+              key: $(Agent.OS) | **/global.json, **/*.csproj
+              restoreKeys: $(Agent.OS)
+              path: ~/.nuget/packages
           - task: CmdLine@2
             inputs:
               script: './build.cmd Compile Test --skip --test-partition $(System.JobPositionInPhase)'
