@@ -8,6 +8,9 @@ using static Nuke.Common.Logger;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
+    // Execute build with:
+    //     nuke --profile dev
+    //     nuke --profile prod
     public static int Main () => Execute<Build>(x => x.Print);
 
     [Parameter] readonly string StringParam;
@@ -20,7 +23,7 @@ class Build : NukeBuild
         .Executes(() =>
         {
             Normal($"{nameof(StringParam)} = {StringParam ?? "<null>"}");
-            Normal($"{nameof(BoolParam)} = {(BoolParam.HasValue ? BoolParam.Value.ToString() : "<null>")}");
+            Normal($"{nameof(BoolParam)} = {BoolParam?.ToString() ?? "<null>"}");
             Normal($"{nameof(EnumParam)} = {EnumParam}");
             Normal($"{nameof(ArrayParam)} = {ArrayParam?.JoinComma() ?? "<null>"}");
         });

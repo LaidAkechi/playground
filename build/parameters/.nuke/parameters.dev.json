@@ -1,0 +1,8 @@
+{
+  "$schema": "./build.schema.json",
+  "StringParam": "development",
+  "ArrayParam": [
+    "Test",
+    "values"
+  ]
+}

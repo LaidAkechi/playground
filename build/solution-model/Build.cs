@@ -9,7 +9,7 @@ partial class Build : NukeBuild
     public static int Main() => Execute<Build>();
 
     // Resolved from .nuke file or --solution parameter
-    [Solution] readonly Solution Solution;
+    [Solution(GenerateProjects = true)] readonly Solution Solution;
 
     // Resolved from constructor argument
     [Solution("./../../nuke-playground.sln")] readonly Solution SolutionFromPath;
